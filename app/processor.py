@@ -7,15 +7,11 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
 class Processor:
-    def __init__(self, df : pd.DataFrame, weapons_black_list : set, text_col = 'Text'):
+    def __init__(self, df : pd.DataFrame, weapons_black_list : set, text_col : str):
         self.df = df
         self.weapons_black_list = weapons_black_list
         self.text_col = text_col
 
-        nltk_dir = "/tmp/nltk_data"
-        os.makedirs(nltk_dir, exist_ok=True)
-        nltk.data.path.append(nltk_dir)
-        nltk.download('vader_lexicon', download_dir=nltk_dir, quiet=True)
         self.analyzer = SentimentIntensityAnalyzer()
 
     # found the rarest word in the text

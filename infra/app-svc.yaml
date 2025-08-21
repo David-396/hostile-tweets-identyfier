@@ -5,7 +5,7 @@ metadata:
   namespace: david-eini12-dev
 spec:
   selector:
-    app: hostile-tweets-svc
+    app: hostile-tweets-identifier
   ports:
     - protocol: TCP
       port: 8080
