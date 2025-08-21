@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: david-eini12-dev
+  name: hostile_tweets_identifier
+spec:
+  selector:
+    matchLabels:
+      app:  hostile_tweets_identifier
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  hostile_tweets_identifier
+    spec:
+      containers:
+        - name:  hostile_tweets_identifier
+          image: david4554545/hostile-tweets-identifier:1.0
+          env:
+           - name: MONGO_USER
+             valueFrom:
+             secretKeyRef:
+               name: hostile-tweets-secret
+               key: MONGO_USER
+           - name: MONGO_PASSWORD
+             valueFrom:
+             secretKeyRef:
+               name: hostile-tweets-secret
+               key: MONGO_PASSWORD
+           - name: MONGO_DB_NAME
+             valueFrom:
+             secretKeyRef:
+               name: hostile-tweets-secret
+               key: MONGO_DB_NAME
+           - name: CONNECTION_STR
+             valueFrom:
+             secretKeyRef:
+               name: hostile-tweets-secret
+               key: CONNECTION_STR
+           - name: MONGO_COLLECTION_NAME
+             valueFrom:
+             secretKeyRef:
+               name: hostile-tweets-secret
+               key: MONGO_COLLECTION_NAME
+           - name: WEAPONS_BLACK_LIST_FILE_PATH
+             valueFrom:
+             secretKeyRef:
+               name: hostile-tweets-secret
+               key: WEAPONS_BLACK_LIST_FILE_PATH
+           - name: TEXT_COL_IN_DF
+             valueFrom:
+             secretKeyRef:
+               name: hostile-tweets-secret
+               key: TEXT_COL_IN_DF
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
