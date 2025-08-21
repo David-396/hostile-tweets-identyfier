@@ -16,6 +16,7 @@ spec:
       containers:
         - name:  hostile-tweets-identifier
           image: david4554545/hostile-tweets-identifier:latest
+          imagePullPolicy: Always
           env:
            - name: MONGO_USER
              valueFrom:
