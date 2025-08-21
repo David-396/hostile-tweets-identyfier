@@ -2,7 +2,8 @@ FROM python:3.12-alpine
 
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apk add --no-cache ca-certificates && \
+    pip install --no-cache-dir -r requirements.txt
 
 ENV NLTK_DATA=/tmp/nltk_data
 
