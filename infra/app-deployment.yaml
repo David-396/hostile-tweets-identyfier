@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name:  hostile-tweets-identifier
-          image: david4554545/hostile-tweets-identifier:1.0
+          image: david4554545/hostile-tweets-identifier:latest
           env:
            - name: MONGO_USER
              valueFrom:
