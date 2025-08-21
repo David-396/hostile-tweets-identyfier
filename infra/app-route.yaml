@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hostile-tweets-app-route
+  namespace: david-eini12-dev
+spec:
+  to:
+    name: hostile-tweets-svc
+    kind: Service
+  port:
+    targetPort: 8000
