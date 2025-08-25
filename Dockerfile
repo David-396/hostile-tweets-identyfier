@@ -1,13 +1,14 @@
 FROM python:3.12-alpine
 
+RUN apk add --no-cache ca-certificates
+
 COPY requirements.txt .
 
-RUN apk add --no-cache ca-certificates && \
-    pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 ENV NLTK_DATA=/tmp/nltk_data
 
-RUN python -m nltk.downloader vader_lexicon
+RUN python -m nltk.downloader -d /tmp/nltk_data vader_lexicon
 
 COPY . .
 

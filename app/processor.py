@@ -1,6 +1,5 @@
-import os
 from collections import Counter
-import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
